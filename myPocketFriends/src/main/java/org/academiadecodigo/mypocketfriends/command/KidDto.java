@@ -1,6 +1,6 @@
 package org.academiadecodigo.mypocketfriends.command;
 
-import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
+
 
 import javax.validation.constraints.*;
 
