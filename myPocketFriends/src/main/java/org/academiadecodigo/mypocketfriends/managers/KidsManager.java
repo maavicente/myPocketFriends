@@ -1,4 +1,6 @@
-package org.academiadecodigo.mypocketfriends.kids;
+package org.academiadecodigo.mypocketfriends.managers;
+
+import org.academiadecodigo.mypocketfriends.model.Kid;
 
 public class KidsManager {
 

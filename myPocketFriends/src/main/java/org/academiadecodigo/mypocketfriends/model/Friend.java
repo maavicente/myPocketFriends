@@ -1,4 +1,4 @@
-package org.academiadecodigo.mypocketfriends.friends;
+package org.academiadecodigo.mypocketfriends.model;
 
 public class Friend {
 
@@ -6,7 +6,7 @@ public class Friend {
     private String image;
     private String characteristics;
 
-    Friend() {
+    public Friend() {
 
     }
 

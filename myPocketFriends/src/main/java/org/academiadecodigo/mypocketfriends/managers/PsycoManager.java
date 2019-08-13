@@ -1,4 +1,6 @@
-package org.academiadecodigo.mypocketfriends.psyco;
+package org.academiadecodigo.mypocketfriends.managers;
+
+import org.academiadecodigo.mypocketfriends.model.Psyco;
 
 import java.util.ArrayList;
 

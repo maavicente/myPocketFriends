@@ -1,6 +1,6 @@
-package org.academiadecodigo.mypocketfriends.kids;
+package org.academiadecodigo.mypocketfriends.model;
 
-import org.academiadecodigo.mypocketfriends.friends.Friend;
+import org.academiadecodigo.mypocketfriends.model.Friend;
 
 import java.util.ArrayList;
 import java.util.HashMap;
