@@ -1,28 +1,21 @@
 package org.academiadecodigo.mypocketfriends.converters;
 
-import org.academiadecodigo.javabank.command.AccountDto;
-import org.academiadecodigo.javabank.persistence.model.account.Account;
-import org.springframework.core.convert.converter.Converter;
+
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.Friend;
 import org.springframework.stereotype.Component;
 
-/**
- * A {@link Converter} implementation, responsible for {@link Account} to {@link AccountDto} type conversion
- */
-@Component
-public class AccountToAccountDto extends AbstractConverter<Account, AccountDto> {
 
-    /**
-     * Converts the account model object into an account DTO
-     * @param account the account
-     * @return the account DTO
-     */
+@Component
+public class FriendToFriendDto extends AbstractConverter<org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.Friend, AccountDto> {
+
+
     @Override
-    public AccountDto convert(Account account) {
+    public AccountDto convert(Friend friend) {
 
         AccountDto accountDto = new AccountDto();
-        accountDto.setId(account.getId());
-        accountDto.setType(account.getAccountType());
-        accountDto.setBalance(String.valueOf(account.getBalance()));
+        accountDto.setId(friend.getId());
+        accountDto.setType(friend.getAccountType());
+        accountDto.setBalance(String.valueOf(friend.getBalance()));
 
         return accountDto;
     }

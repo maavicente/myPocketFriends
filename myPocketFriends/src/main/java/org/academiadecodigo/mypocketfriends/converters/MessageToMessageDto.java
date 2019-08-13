@@ -1,32 +1,24 @@
 package org.academiadecodigo.mypocketfriends.converters;
 
-import org.academiadecodigo.javabank.command.RecipientDto;
-import org.academiadecodigo.javabank.persistence.model.Recipient;
-import org.springframework.core.convert.converter.Converter;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Message;
 import org.springframework.stereotype.Component;
 
-/**
- * A {@link Converter} implementation, responsible for {@link Recipient} to {@link RecipientDto} type conversion
- */
+
 @Component
-public class RecipientToRecipientDto extends AbstractConverter<Recipient, RecipientDto> {
+public class MessageToMessageDto extends AbstractConverter<Message, MessageDto> {
 
-    /**
-     * Converts the recipient model object into a recipient DTO
-     * @param recipient the recipient
-     * @return the recipient DTO
-     */
+
     @Override
-    public RecipientDto convert(Recipient recipient) {
+    public MessageDto convert(Message message) {
 
-        RecipientDto recipientDto = new RecipientDto();
-        recipientDto.setId(recipient.getId());
-        recipientDto.setAccountNumber(recipient.getAccountNumber());
-        recipientDto.setName(recipient.getName());
-        recipientDto.setEmail(recipient.getEmail());
-        recipientDto.setPhone(recipient.getPhone());
-        recipientDto.setDescription(recipient.getDescription());
+        MessageDto messageDto = new MessageDto();
+        messageDto.setId(message.getId());
+        messageDto.setAccountNumber(message.getAccountNumber());
+        messageDto.setName(message.getName());
+        messageDto.setEmail(message.getEmail());
+        messageDto.setPhone(message.getPhone());
+        messageDto.setDescription(message.getDescription());
 
-        return recipientDto;
+        return messageDto;
     }
 }

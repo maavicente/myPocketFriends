@@ -1,32 +1,23 @@
 package org.academiadecodigo.mypocketfriends.converters;
 
-import org.academiadecodigo.javabank.command.CustomerDto;
-import org.academiadecodigo.javabank.persistence.model.Customer;
-import org.springframework.core.convert.converter.Converter;
+
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 import org.springframework.stereotype.Component;
 
-/**
- * A {@link Converter} implementation, responsible for {@link Customer} to {@link CustomerDto} type conversion
- */
 @Component
-public class CustomerToCustomerDto extends AbstractConverter<Customer, CustomerDto> {
+public class KidToKidDto extends AbstractConverter<Kid, KidDto> {
 
-    /**
-     * Converts the customer model object into a customer DTO
-     *
-     * @param customer the customer
-     * @return the customer DTO
-     */
+
     @Override
-    public CustomerDto convert(Customer customer) {
+    public KidDto convert(Kid kid) {
 
-        CustomerDto customerDto = new CustomerDto();
-        customerDto.setId(customer.getId());
-        customerDto.setFirstName(customer.getFirstName());
-        customerDto.setLastName(customer.getLastName());
-        customerDto.setEmail(customer.getEmail());
-        customerDto.setPhone(customer.getPhone());
+        KidDto kidDto = new KidDto();
+        kidDto.setId(kid.getId());
+        kidDto.setFirstName(kid.getFirstName());
+        kidDto.setLastName(kid.getLastName());
+        kidDto.setEmail(kid.getEmail());
+        kidDto.setPhone(kid.getPhone());
 
-        return customerDto;
+        return kidDto;
     }
 }

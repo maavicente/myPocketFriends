@@ -1,5 +1,7 @@
 package org.academiadecodigo.mypocketfriends.controller.web;
 
+import org.academiadecodigo.mypocketfriends.converters.FriendDtoToFriend;
+import org.academiadecodigo.mypocketfriends.converters.KidToKidDto;
 import org.academiadecodigo.mypocketfriends.model.Friend;
 import org.academiadecodigo.mypocketfriends.services.FriendService;
 import org.academiadecodigo.mypocketfriends.services.KidService;

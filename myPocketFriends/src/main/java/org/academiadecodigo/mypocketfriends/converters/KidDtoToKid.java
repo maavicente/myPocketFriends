@@ -1,46 +1,34 @@
 package org.academiadecodigo.mypocketfriends.converters;
 
-import org.academiadecodigo.javabank.command.CustomerDto;
-import org.academiadecodigo.javabank.persistence.model.Customer;
-import org.academiadecodigo.javabank.services.CustomerService;
+
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
+import org.academiadecodigo.mypocketfriends.services.KidService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-/**
- * A {@link Converter} implementation, responsible for {@link CustomerDto} to {@link Customer} type conversion
- */
+
 @Component
-public class CustomerDtoToCustomer implements Converter<CustomerDto, Customer> {
+public class KidDtoToKid implements Converter<KidDto, Kid> {
 
-    private CustomerService customerService;
+    private KidService kidService;
 
-    /**
-     * Sets the customer service
-     *
-     * @param customerService the customer service to set
-     */
+
     @Autowired
-    public void setCustomerService(CustomerService customerService) {
-        this.customerService = customerService;
+    public void setKidService(KidService kidService) {
+        this.kidService = kidService;
     }
 
-    /**
-     * Converts the customer DTO into a customer model object
-     *
-     * @param customerDto the customer DTO
-     * @return the customer
-     */
+
     @Override
-    public Customer convert(CustomerDto customerDto) {
+    public Kid convert(KidDto kidDto) {
 
-        Customer customer = (customerDto.getId() != null ? customerService.get(customerDto.getId()) : new Customer());
+        Kid kid = (kidDto.getId() != null ? kidService.get(kidDto.getId()) : new Customer());
 
-        customer.setFirstName(customerDto.getFirstName());
-        customer.setLastName(customerDto.getLastName());
-        customer.setEmail(customerDto.getEmail());
-        customer.setPhone(customerDto.getPhone());
+        kid.setFirstName(kidDto.getFirstName());
+        kid.setLastName(kidDto.getLastName());
+        kid.setEmail(kidDto.getEmail());
+        kid.setPhone(kidDto.getPhone());
 
-        return customer;
+        return kid;
     }
 }
