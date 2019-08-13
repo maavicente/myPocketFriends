@@ -25,5 +25,45 @@ public class KidServiceImpl implements KidService {
     private MessageDao messageDao;
     private FriendDao friendDao;
 
+    @Autowired
+    public void setKidDao(KidDao kidDao) {
+        this.kidDao = kidDao;
+    }
+
+    @Autowired
+    public void setMessageDao(MessageDao messageDao) {
+        this.messageDao = messageDao;
+    }
+
+    @Autowired
+    public void setFriendDao(FriendDao friendDao) {
+        this.friendDao = friendDao;
+    }
+
+    @Override
+    public Kid getKid(Integer id) {
+        return kidDao.findById(id);
+    }
+
+    @Transactional
+    @Override
+    public Kid save(Kid kid) {
+        return null;
+    }
+
+    @Override
+    public List<Kid> list() {
+        return null;
+    }
+
+    @Override
+    public List<Message> listMessages(Integer id) {
+        return null;
+    }
+
+    @Override
+    public void addMessage(Integer id, Message message) {
+
+    }
 }
 
