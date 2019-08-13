@@ -1,23 +1,11 @@
 package org.academiadecodigo.mypocketfriends.services;
 
-import org.academiadecodigo.javabank.persistence.dao.AccountDao;
-import org.academiadecodigo.javabank.persistence.dao.CustomerDao;
-import org.academiadecodigo.javabank.persistence.dao.RecipientDao;
-import org.academiadecodigo.javabank.persistence.model.Customer;
-import org.academiadecodigo.javabank.persistence.model.Recipient;
-import org.academiadecodigo.javabank.persistence.model.account.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-/**
- * An {@link KidService} implementation
- */
 @Service
 public class KidServiceImpl implements KidService {
 
@@ -48,22 +36,42 @@ public class KidServiceImpl implements KidService {
     @Transactional
     @Override
     public Kid save(Kid kid) {
-        return null;
+        return kidDao.saveOrUpdate(kid);
     }
 
     @Override
     public List<Kid> list() {
-        return null;
+        return kidDao.findAll();
     }
 
     @Override
     public List<Message> listMessages(Integer id) {
-        return null;
+
+        Kid kid = kidDao.findById(id);
+
+        if (kid == null) {
+            throw new IllegalArgumentException("Kid does not exist");
+        }
+
+        return new ArrayList<>(kidDao.findById(id).getMessage());
+
     }
 
     @Override
     public void addMessage(Integer id, Message message) {
+        Kid kid = kidDao.findById(id);
 
+        if (kid == null) {
+            throw new IllegalArgumentException("Kid does not exist");
+        }
+
+        if (friendDao.findById(message.getId()) == null ||
+                getMessageIds(customer).contains(recipient.getAccountNumber())) {
+            throw new IllegalArgumentException("Invalid id number");
+        }
+
+        kid.addMessage(message);
+        kidDao.saveOrUpdate(kid);
     }
 }
 
