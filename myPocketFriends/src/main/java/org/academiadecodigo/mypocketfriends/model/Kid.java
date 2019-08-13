@@ -12,7 +12,13 @@ public class Kid {
     private HashMap message;
     private HashMap psycoNotes;
 
-    public Kid(String name) {
+    public Kid() {}
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setFriendArrayList(ArrayList<Friend> friendArrayList) {
+        this.friendArrayList = friendArrayList;
     }
 }
