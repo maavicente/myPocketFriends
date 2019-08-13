@@ -1,8 +1,8 @@
 package org.academiadecodigo.mypocketfriends.services;
 
+import org.academiadecodigo.mypocketfriends.persistence.kids.dao.FriendDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class FriendServiceImpl implements FriendService {
@@ -14,7 +14,10 @@ public class FriendServiceImpl implements FriendService {
         this.friendDao = friendDao;
     }
 
-
+    @Override
+    public Friend get(Integer id) {
+        return friendDao.findById(id);
+    }
 
 
 }

@@ -1,17 +1,17 @@
 package org.academiadecodigo.mypocketfriends.services;
 
 
-import org.academiadecodigo.mypocketfriends.model.Kid;
-
-import java.util.List;
-import java.util.Set;
 
 public interface KidService {
 
-    Kid get(Integer id);
+    Kid getKid(Integer id);
+
+    Kid save(Kid kid);
 
     List<Kid> list();
 
+    List<Message> listMessages(Integer id);
 
+    void addMessage(Integer id, Message message);
 
 }

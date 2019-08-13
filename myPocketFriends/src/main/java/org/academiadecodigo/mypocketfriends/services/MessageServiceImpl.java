@@ -1,6 +1,7 @@
 package org.academiadecodigo.mypocketfriends.services;
 
-import com.google.protobuf.Message;
+import org.academiadecodigo.mypocketfriends.persistence.kids.dao.MessageDao;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
