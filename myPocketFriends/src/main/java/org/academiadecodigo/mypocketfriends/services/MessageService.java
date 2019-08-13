@@ -1,6 +1,6 @@
 package org.academiadecodigo.mypocketfriends.services;
 
-import com.google.protobuf.Message;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Message;
 
 public interface MessageService {
 
