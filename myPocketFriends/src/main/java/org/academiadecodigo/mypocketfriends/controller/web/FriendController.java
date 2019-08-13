@@ -59,7 +59,7 @@ public class FriendController {
 
         try {
             Friend friend = friendDtoToFriend.convert(friendDto);
-            KidService.addAccount(cid, friend);
+            KidService(cid, friend);
             redirectAttributes.addFlashAttribute("lastAction", "Created " + friend.getFriendType() + " account.");
             return "redirect:/customer/" + cid;
 
