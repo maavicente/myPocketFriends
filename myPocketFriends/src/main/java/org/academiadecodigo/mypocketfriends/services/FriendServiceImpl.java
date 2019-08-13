@@ -14,7 +14,10 @@ public class FriendServiceImpl implements FriendService {
         this.friendDao = friendDao;
     }
 
-
+    @Override
+    public Friend get(Integer id) {
+        return friendDao.findById(id);
+    }
 
 
 }
