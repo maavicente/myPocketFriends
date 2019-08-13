@@ -1,15 +1,12 @@
 package org.academiadecodigo.mypocketfriends.persistence.kids.dao.jpa;
 
-
 import org.academiadecodigo.mypocketfriends.persistence.kids.dao.Dao;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Model;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
-
 
 public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
 
@@ -17,7 +14,6 @@ public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
 
     @PersistenceContext
     protected EntityManager em;
-
 
     public GenericJpaDao(Class<T> modelType) {
         this.modelType = modelType;
@@ -29,12 +25,9 @@ public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
 
     @Override
     public List<T> findAll() {
-
         CriteriaQuery<T> criteriaQuery = em.getCriteriaBuilder().createQuery(modelType);
         Root<T> root = criteriaQuery.from(modelType);
         return em.createQuery(criteriaQuery).getResultList();
-
-
     }
 
     @Override

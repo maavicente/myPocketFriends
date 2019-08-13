@@ -11,18 +11,18 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "account_type")
 public abstract class FriendAbs extends AbstractModel {
 
-    private double balance = 0;
+    private String image;
 
     @ManyToOne
     private Kid kid;
 
 
-    public double getBalance() {
-        return balance;
+    public String getImage() {
+        return image;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Kid getKid() {
@@ -35,40 +35,11 @@ public abstract class FriendAbs extends AbstractModel {
     }
 
 
-
-    public void credit(double amount) {
-        if (canCredit(amount)) {
-            balance += amount;
-        }
-    }
-
-
-    public void debit(double amount) {
-        if (canDebit(amount)) {
-            balance -= amount;
-        }
-    }
-
-
-    public boolean canCredit(double amount) {
-        return amount > 0;
-    }
-
-
-    public boolean canDebit(double amount) {
-        return amount > 0 && amount <= balance;
-    }
-
-
-    public boolean canWithdraw() {
-        return true;
-    }
-
     @Override
     public String toString() {
         return "FriendAbs{" +
-                "balance=" + balance +
-                ", customerId=" + (kid != null ? kid.getId() : null) +
+                "image=" + image +
+                ", KidId=" + (kid != null ? kid.getId() : null) +
                 "} " + super.toString();
     }
 }

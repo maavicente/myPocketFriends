@@ -1,49 +1,39 @@
 package org.academiadecodigo.mypocketfriends.persistence.kids.model;
 
-
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.FriendAbs;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "kids")
 public class Kid extends AbstractModel {
 
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
+    private String serialNumber;
+    private String tutorName;
+    private String username;
+    private String password;
+    private String address;
 
     @OneToMany(
-            // propagate changes on customer entity to friends entities
             cascade = {CascadeType.ALL},
-
-            // make sure to remove friendAbs if unlinked from customer
             orphanRemoval = true,
-
-            // user customer foreign key on friends table to establish
-            // the many-to-one relationship instead of a join table
-            mappedBy = "customer",
-
-            // fetch friendAbs from database together with user
+            mappedBy = "kids",
             fetch = FetchType.EAGER
     )
+
     private List<FriendAbs> friendAbs = new ArrayList<>();
 
     @OneToMany(
-            // propagate changes on customer entity to friends entities
             cascade = {CascadeType.ALL},
-
-            // make sure to remove histories if unlinked from customer
             orphanRemoval = true,
-
-            // use recipient foreign key on recipient table to establish
-            // the many-to-one relationship instead of a join table
-            mappedBy = "customer"
+            mappedBy = "kids"
     )
-    private List<History> histories = new ArrayList<>();
+    private List<Message> histories = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;
@@ -87,34 +77,73 @@ public class Kid extends AbstractModel {
     }
 
 
-    public List<History> getHistories() {
+    public List<Message> getMessages() {
         return histories;
     }
 
 
-    public void addAccount(FriendAbs friendAbs) {
+    public void addFriend(FriendAbs friendAbs) {
         this.friendAbs.add(friendAbs);
         friendAbs.setKid(this);
     }
 
 
-    public void removeAccount(FriendAbs friendAbs) {
+    public void removeFriend(FriendAbs friendAbs) {
         this.friendAbs.remove(friendAbs);
         friendAbs.setKid(null);
     }
 
 
-    public void addRecipient(History history) {
+    public void addMessage(Message history) {
         histories.add(history);
         history.setKid(this);
     }
 
 
-    public void removeRecipient(History history) {
+    public void removeMessage(Message history) {
         histories.remove(history);
         history.setKid(null);
     }
 
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getTutorName() {
+        return tutorName;
+    }
+
+    public void setTutorName(String tutorName) {
+        this.tutorName = tutorName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     @Override
     public String toString() {
