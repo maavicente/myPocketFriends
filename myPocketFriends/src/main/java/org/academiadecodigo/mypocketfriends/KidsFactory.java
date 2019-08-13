@@ -9,12 +9,14 @@ public class KidsFactory {
 
     private Kid newKid;
     private Friend friend;
+    private FriendType friendType;
 
-    public Kid createKid(String name) {
+    public Kid createKid(String name, FriendType friendType) {
 
         newKid = new Kid();
         newKid.setName(name);
-        newKid.setFriendArrayList();
+
+        newKid.setFriendsList(newKid.getFriendList());
 
         return newKid;
     }
