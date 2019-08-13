@@ -1,17 +1,13 @@
 package org.academiadecodigo.mypocketfriends.controller.web;
 
-import org.academiadecodigo.javabank.command.AccountDto;
-import org.academiadecodigo.javabank.command.AccountTransactionDto;
-import org.academiadecodigo.javabank.command.CustomerDto;
-import org.academiadecodigo.javabank.command.TransferDto;
-import org.academiadecodigo.javabank.converters.AccountToAccountDto;
-import org.academiadecodigo.javabank.converters.CustomerDtoToCustomer;
-import org.academiadecodigo.javabank.converters.CustomerToCustomerDto;
-import org.academiadecodigo.javabank.exceptions.AssociationExistsException;
-import org.academiadecodigo.javabank.exceptions.CustomerNotFoundException;
-import org.academiadecodigo.javabank.persistence.model.Customer;
-import org.academiadecodigo.javabank.persistence.model.account.AccountType;
-import org.academiadecodigo.javabank.services.CustomerService;
+
+import org.academiadecodigo.mypocketfriends.command.FriendDto;
+import org.academiadecodigo.mypocketfriends.command.KidDto;
+import org.academiadecodigo.mypocketfriends.converters.FriendToFriendDto;
+import org.academiadecodigo.mypocketfriends.converters.KidDtoToKid;
+import org.academiadecodigo.mypocketfriends.converters.KidToKidDto;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
+import org.academiadecodigo.mypocketfriends.services.KidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,125 +20,71 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-/**
- * Controller responsible for rendering {@link Customer} related views
- */
 @Controller
 @RequestMapping("/customer")
 public class KidController {
 
-    private CustomerService customerService;
+    private KidService kidService;
+    private KidToKidDto kidToKidDto;
+    private KidDtoToKid kidDtoToKid;
+    private FriendToFriendDto friendToFriendDto;
 
-    private CustomerToCustomerDto customerToCustomerDto;
-    private CustomerDtoToCustomer customerDtoToCustomer;
-    private AccountToAccountDto accountToAccountDto;
 
-    /**
-     * Sets the customer service
-     *
-     * @param customerService the customer service to set
-     */
     @Autowired
-    public void setCustomerService(CustomerService customerService) {
-        this.customerService = customerService;
+    public void setKidService(KidService kidService) {
+        this.kidService = kidService;
     }
 
-    /**
-     * Sets the converter for converting between customer model objects and customer DTO
-     *
-     * @param customerToCustomerDto the customer to customer DTO converter to set
-     */
+
     @Autowired
-    public void setCustomerToCustomerDto(CustomerToCustomerDto customerToCustomerDto) {
-        this.customerToCustomerDto = customerToCustomerDto;
+    public void setKidToKidDto(KidToKidDto kidToKidDto) {
+        this.kidToKidDto = kidToKidDto;
     }
 
-    /**
-     * Sets the converter for converting between customer DTO and customer model objects
-     *
-     * @param customerDtoToCustomer the customer DTO to customer converter to set
-     */
     @Autowired
-    public void setCustomerDtoToCustomer(CustomerDtoToCustomer customerDtoToCustomer) {
-        this.customerDtoToCustomer = customerDtoToCustomer;
+    public void setKidDtoToKid(KidDtoToKid kidDtoToKid) {
+        this.kidDtoToKid = kidDtoToKid;
     }
 
-    /**
-     * Sets the converter for converting between account model object and account DTO
-     *
-     * @param accountToAccountDto the account model object to account DTO converter to set
-     */
     @Autowired
-    public void setAccountToAccountDto(AccountToAccountDto accountToAccountDto) {
-        this.accountToAccountDto = accountToAccountDto;
+    public void setFriendToFriendDto(FriendToFriendDto friendToFriendDto) {
+        this.friendToFriendDto = friendToFriendDto;
     }
 
-    /**
-     * Renders a view with a list of customers
-     *
-     * @param model the model object
-     * @return the view to render
-     */
     @RequestMapping(method = RequestMethod.GET, path = {"/list", "/", ""})
     public String listCustomers(Model model) {
-        model.addAttribute("customers", customerToCustomerDto.convert(customerService.list()));
+        model.addAttribute("customers", kidToKidDto.convert(kidService.list()));
         return "customer/list";
     }
 
-    /**
-     * Adds a customer
-     *
-     * @param model the model object
-     * @return the view to render
-     */
     @RequestMapping(method = RequestMethod.GET, path = "/add")
     public String addCustomer(Model model) {
-        model.addAttribute("customer", new CustomerDto());
+        model.addAttribute("customer", new KidDto());
         return "customer/add-update";
     }
 
-    /**
-     * Edits a customer
-     *
-     * @param id    the customer id
-     * @param model the model object
-     * @return the view to render
-     */
     @RequestMapping(method = RequestMethod.GET, path = "/{id}/edit")
     public String editCustomer(@PathVariable Integer id, Model model) {
-        model.addAttribute("customer", customerToCustomerDto.convert(customerService.get(id)));
+        model.addAttribute("customer", kidToKidDto.convert(kidService.get(id)));
         return "customer/add-update";
     }
 
-    /**
-     * Renders a view with customer details
-     *
-     * @param id    the customer id
-     * @param model the model object
-     * @return the view to render
-     * @throws Exception
-     */
+
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public String showCustomer(@PathVariable Integer id, Model model) throws Exception {
 
-        Customer customer = customerService.get(id);
+        Kid kid = kidService.get(id);
 
         // command objects for customer show view
-        model.addAttribute("customer", customerToCustomerDto.convert(customer));
-        model.addAttribute("accounts", accountToAccountDto.convert(customer.getAccounts()));
-        model.addAttribute("accountTypes", AccountType.list());
-        model.addAttribute("customerBalance", customerService.getBalance(id));
+        model.addAttribute("customer", kidToKidDto.convert(kid));
+        model.addAttribute("accounts", friendToFriendDto.convert(kid.getAccounts()));
+        model.addAttribute("friendTypes", FriendType.list());
+        model.addAttribute("customerBalance", kidService.getBalance(id));
 
-        // command objects for modals
-        AccountDto accountDto = new AccountDto();
-        AccountTransactionDto accountTransactionDto = new AccountTransactionDto();
-        accountTransactionDto.setId(id);
 
-        model.addAttribute("account", accountDto);
-        model.addAttribute("accountTransaction", accountTransactionDto);
+        model.addAttribute("friend", friendDto);
 
-        model.addAttribute("transfer", new TransferDto());
-        return "customer/show";
+        return "kid/show";
     }
 
     /**
@@ -160,7 +102,7 @@ public class KidController {
             return "customer/add-update";
         }
 
-        Customer savedCustomer = customerService.save(customerDtoToCustomer.convert(customerDto));
+        Customer savedCustomer = kidService.save(kidDtoToKid.convert(customerDto));
 
         redirectAttributes.addFlashAttribute("lastAction", "Saved " + savedCustomer.getFirstName() + " " + savedCustomer.getLastName());
         return "redirect:/customer/" + savedCustomer.getId();
@@ -188,8 +130,8 @@ public class KidController {
      */
     @RequestMapping(method = RequestMethod.GET, path = "{id}/delete")
     public String deleteCustomer(@PathVariable Integer id, RedirectAttributes redirectAttributes) throws AssociationExistsException, CustomerNotFoundException {
-        Customer customer = customerService.get(id);
-        customerService.delete(id);
+        Customer customer = kidService.get(id);
+        kidService.delete(id);
         redirectAttributes.addFlashAttribute("lastAction", "Deleted " + customer.getFirstName() + " " + customer.getLastName());
         return "redirect:/customer";
     }

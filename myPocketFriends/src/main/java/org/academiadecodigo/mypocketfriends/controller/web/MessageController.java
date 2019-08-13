@@ -115,7 +115,7 @@ public class MessageController {
         try {
 
             Message message = messageDtoToMessage.convert(messageDto);
-            kidService.addRecipient(cid, message);
+            kidService.addMessage(cid, message);
 
             redirectAttributes.addFlashAttribute("lastAction", "Saved " + messageDto.getName());
             return "redirect:/customer/" + cid + "/recipient";

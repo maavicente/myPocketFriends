@@ -1,9 +1,12 @@
 package org.academiadecodigo.mypocketfriends.controller.web;
 
+<<<<<<< HEAD
 import org.academiadecodigo.mypocketfriends.command.FriendDto;
+=======
+import org.academiadecodigo.mypocketfriends.command.MessageDto;
+>>>>>>> 22d0d2ffab01c1d48a37670416c30181d3c8052b
 import org.academiadecodigo.mypocketfriends.converters.FriendDtoToFriend;
 import org.academiadecodigo.mypocketfriends.converters.KidToKidDto;
-import org.academiadecodigo.mypocketfriends.model.Friend;
 import org.academiadecodigo.mypocketfriends.services.FriendService;
 import org.academiadecodigo.mypocketfriends.services.KidService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.validation.Valid;
-
 
 @Controller
 @RequestMapping("/customer")
@@ -25,61 +26,38 @@ public class FriendController {
     private KidService kidService;
     private FriendService friendService;
     private FriendDtoToFriend friendDtoToFriend;
-    private KidToKidDto customerToCustomerDto;
-
+    private KidToKidDto kidToKidDto;
 
     @Autowired
     public void setCustomerService(KidService kidService) {
         this.kidService = kidService;
     }
 
-
     @Autowired
     public void setFriendService(FriendService friendService) {
         this.friendService = friendService;
     }
-
 
     @Autowired
     public void setFriendDtoToFriend(FriendDtoToFriend friendDtoToFriend) {
         this.friendDtoToFriend = friendDtoToFriend;
     }
 
-
     @Autowired
     public void setKidToKidDto(KidToKidDto kidToKidDto) {
-        this.customerToCustomerDto = kidToKidDto;
+        this.kidToKidDto = kidToKidDto;
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = {"/{cid}/account"})
-    public String addAccount(@PathVariable Integer cid, @Valid @ModelAttribute("account") FriendDto friendDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws Exception {
+    @RequestMapping(method = RequestMethod.POST, path = {"/{cid}/friend/{fid}/message"})
+    public String deposit(@PathVariable Integer cid, @PathVariable Integer fid, @Valid @ModelAttribute("message") MessageDto messageDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws Exception {
 
         if (bindingResult.hasErrors()) {
-            return "redirect:/customer/" + cid;
+            redirectAttributes.addFlashAttribute("failure", "Message not sent");
+            return "redirect:/kid/" + cid;
         }
 
-        try {
-            Friend friend = friendDtoToFriend.convert(friendDto);
-            KidService(cid, friend);
-            redirectAttributes.addFlashAttribute("lastAction", "Created " + friend.getFriendType() + " account.");
-            return "redirect:/customer/" + cid;
-
-        } catch (TransactionInvalidException ex) {
-            redirectAttributes.addFlashAttribute("failure", "Savings account must have a minimum value of 100 at all times");
-            return "redirect:/customer/" + cid;
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.POST, path = {"/{cid}/deposit"})
-    public String deposit(@PathVariable Integer cid, @Valid @ModelAttribute("transaction") FriendTransactionDto friendTransactionDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws Exception {
-
-        if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("failure", "Deposit failed missing information");
-            return "redirect:/customer/" + cid;
-        }
-
-        friendService.deposit(friendTransactionDto.getId(), cid, Double.parseDouble(friendTransactionDto.getAmount()));
-        redirectAttributes.addFlashAttribute("lastAction", "Deposited " + friendTransactionDto.getAmount() + " into account # " + friendTransactionDto.getId());
+        friendService.saveMessage(messageDto.getId(), cid, Double.parseDouble(messageDto.getAmount()));
+        redirectAttributes.addFlashAttribute("lastAction", "Deposited " + messageDto.getAmount() + " into account # " + messageDto.getId());
         return "redirect:/customer/" + cid;
     }
 

@@ -1,10 +1,16 @@
 package org.academiadecodigo.mypocketfriends.services;
 
+import org.academiadecodigo.mypocketfriends.persistence.kids.dao.FriendDao;
+import org.academiadecodigo.mypocketfriends.persistence.kids.dao.KidDao;
+import org.academiadecodigo.mypocketfriends.persistence.kids.dao.MessageDao;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class KidServiceImpl implements KidService {
@@ -35,7 +41,7 @@ public class KidServiceImpl implements KidService {
 
     @Transactional
     @Override
-    public Kid save(Kid kid) {
+    public void save(Kid kid) {
         return kidDao.saveOrUpdate(kid);
     }
 
@@ -53,7 +59,7 @@ public class KidServiceImpl implements KidService {
             throw new IllegalArgumentException("Kid does not exist");
         }
 
-        return new ArrayList<>(kidDao.findById(id).getMessage());
+        return new ArrayList<>(kidDao.findById(id).getMessages());
 
     }
 
@@ -66,7 +72,7 @@ public class KidServiceImpl implements KidService {
         }
 
         if (friendDao.findById(message.getId()) == null ||
-                getMessageIds(customer).contains(recipient.getAccountNumber())) {
+                getMessageIds(kid).contains(message.getAccountNumber())) {
             throw new IllegalArgumentException("Invalid id number");
         }
 

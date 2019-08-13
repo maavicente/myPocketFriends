@@ -15,29 +15,17 @@ public class FriendDto {
     @NotBlank(message = "A message is need to be saved")
     private String message;
 
-    /**
-     * Gets the id of the account DTO
-     *
-     * @return the account DTO id
-     */
+
     public Integer getId() {
         return id;
     }
 
-    /**
-     * Sets the id of the account DTO
-     *
-     * @param id the account DTO id
-     */
+
     public void setId(Integer id) {
         this.id = id;
     }
 
-    /**
-     * Gets the account DTO balance
-     *
-     * @return the account DTO balance
-     */
+
     public String getMessage() {
         return message;
     }
