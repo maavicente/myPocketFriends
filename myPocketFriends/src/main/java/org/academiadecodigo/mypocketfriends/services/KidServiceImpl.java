@@ -6,6 +6,7 @@ import org.academiadecodigo.javabank.persistence.dao.RecipientDao;
 import org.academiadecodigo.javabank.persistence.model.Customer;
 import org.academiadecodigo.javabank.persistence.model.Recipient;
 import org.academiadecodigo.javabank.persistence.model.account.Account;
+import org.academiadecodigo.mypocketfriends.model.Kid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,5 +26,14 @@ public class KidServiceImpl implements KidService {
     private MessageDao messageDao;
     private FriendDao friendDao;
 
+    @Override
+    public Kid get(Integer id) {
+        return null;
+    }
+
+    @Override
+    public List<Kid> list() {
+        return null;
+    }
 }
 
