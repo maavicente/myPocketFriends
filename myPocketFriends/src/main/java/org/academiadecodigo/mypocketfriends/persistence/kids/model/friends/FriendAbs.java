@@ -13,6 +13,9 @@ public abstract class FriendAbs extends AbstractModel {
 
     private String image;
 
+
+    private String characteristics;
+
     @ManyToOne
     private Kid kid;
 
@@ -23,6 +26,14 @@ public abstract class FriendAbs extends AbstractModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCharacteristics() {
+        return characteristics;
+    }
+
+    public void setCharacteristics(String characteristics) {
+        this.characteristics = characteristics;
     }
 
     public Kid getKid() {

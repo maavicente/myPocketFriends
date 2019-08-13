@@ -1,5 +1,8 @@
 package org.academiadecodigo.mypocketfriends.persistence.kids.model;
 
+import org.academiadecodigo.mypocketfriends.model.Friend;
+import org.academiadecodigo.mypocketfriends.model.Psycho;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -10,10 +13,36 @@ public class Message extends AbstractModel {
 
     private String name;
     private String message;
-
+    private Friend friend;
+    private Psycho psycho;
+    private boolean read;
     @ManyToOne
     private Kid kid;
 
+
+    public Friend getFriend() {
+        return friend;
+    }
+
+    public void setFriend(Friend friend) {
+        this.friend = friend;
+    }
+
+    public Psycho getPsycho() {
+        return psycho;
+    }
+
+    public void setPsycho(Psycho psycho) {
+        this.psycho = psycho;
+    }
+
+    public boolean isRead() {
+        return read;
+    }
+
+    public void setRead(boolean read) {
+        this.read = read;
+    }
 
     public String getName() {
         return name;

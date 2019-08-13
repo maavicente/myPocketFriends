@@ -25,7 +25,6 @@ public class Kid extends AbstractModel {
             mappedBy = "kids",
             fetch = FetchType.EAGER
     )
-
     private List<FriendAbs> friendAbs = new ArrayList<>();
 
     @OneToMany(
@@ -33,7 +32,7 @@ public class Kid extends AbstractModel {
             orphanRemoval = true,
             mappedBy = "kids"
     )
-    private List<Message> histories = new ArrayList<>();
+    private List<Message> messages = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;
@@ -78,7 +77,7 @@ public class Kid extends AbstractModel {
 
 
     public List<Message> getMessages() {
-        return histories;
+        return messages;
     }
 
 
@@ -95,13 +94,13 @@ public class Kid extends AbstractModel {
 
 
     public void addMessage(Message history) {
-        histories.add(history);
+        messages.add(history);
         history.setKid(this);
     }
 
 
     public void removeMessage(Message history) {
-        histories.remove(history);
+        messages.remove(history);
         history.setKid(null);
     }
 
@@ -148,7 +147,7 @@ public class Kid extends AbstractModel {
     @Override
     public String toString() {
 
-        // printing histories with lazy loading
+        // printing messages with lazy loading
         // and no session will cause issues
         return "Kid{" +
                 "firstName='" + firstName + '\'' +
