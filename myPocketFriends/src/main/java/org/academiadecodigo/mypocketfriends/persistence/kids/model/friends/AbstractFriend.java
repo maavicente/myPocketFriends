@@ -1,6 +1,7 @@
 package org.academiadecodigo.mypocketfriends.persistence.kids.model.friends;
 
 
+import org.academiadecodigo.mypocketfriends.FriendType;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.AbstractModel;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 
@@ -13,12 +14,17 @@ public abstract class AbstractFriend extends AbstractModel {
 
     private String image;
 
-
     private String characteristics;
+    private FriendType friendType;
+    private String name;
 
     @ManyToOne
     private Kid kid;
 
+    public AbstractFriend(FriendType friendType) {
+        this.friendType = friendType;
+        this.name = friendType.getName();
+    }
 
     public String getImage() {
         return image;
@@ -40,11 +46,9 @@ public abstract class AbstractFriend extends AbstractModel {
         return kid;
     }
 
-
     public void setKid(Kid kid) {
         this.kid = kid;
     }
-
 
     @Override
     public String toString() {
@@ -52,5 +56,9 @@ public abstract class AbstractFriend extends AbstractModel {
                 "image=" + image +
                 ", KidId=" + (kid != null ? kid.getId() : null) +
                 "} " + super.toString();
+    }
+
+    public String getName() {
+        return name;
     }
 }

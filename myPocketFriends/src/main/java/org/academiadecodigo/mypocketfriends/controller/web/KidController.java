@@ -1,22 +1,16 @@
 package org.academiadecodigo.mypocketfriends.controller.web;
 
 
-import org.academiadecodigo.mypocketfriends.FriendType;
 import org.academiadecodigo.mypocketfriends.command.KidDto;
 import org.academiadecodigo.mypocketfriends.converters.KidToKidDto;
-import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 import org.academiadecodigo.mypocketfriends.services.KidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/kid")
@@ -43,7 +37,7 @@ public class KidController {
         KidDto kid = kidService.getKid(cid);
 
         model.addAttribute("kid", kid);
-        model.addAttribute("friend", kid.getFriends());
+        model.addAttribute("friends", kid.getFriends());
 
         return "kid/show";
     }

@@ -2,8 +2,7 @@ package org.academiadecodigo.mypocketfriends.command;
 
 
 
-import org.academiadecodigo.mypocketfriends.model.Friend;
-import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.FriendAbs;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.Friend;
 
 import javax.validation.constraints.*;
 import java.util.List;
@@ -23,7 +22,7 @@ public class KidDto {
     @Size(min = 3, max = 64)
     private String lastName;
 
-    private List<FriendAbs> friends;
+    private List<Friend> friends;
 
 /*    @Email
     @NotBlank(message = "Email is mandatory")
@@ -42,11 +41,11 @@ public class KidDto {
         this.id = id;
     }
 
-    public void setFriends(List<FriendAbs> friends) {
+    public void setFriends(List<Friend> friends) {
         this.friends = friends;
     }
 
-    public List<FriendAbs> getFriends() {
+    public List<Friend> getFriends() {
         return friends;
     }
 

@@ -1,7 +1,7 @@
 package org.academiadecodigo.mypocketfriends.model;
 
-import org.academiadecodigo.mypocketfriends.model.Friend;
 
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.Friend;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
