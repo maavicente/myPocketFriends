@@ -1,5 +1,6 @@
 package org.academiadecodigo.mypocketfriends.services;
 
+import org.academiadecodigo.mypocketfriends.model.Friend;
 import org.academiadecodigo.mypocketfriends.persistence.kids.dao.FriendDao;
 import org.academiadecodigo.mypocketfriends.persistence.kids.dao.KidDao;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.Friend;

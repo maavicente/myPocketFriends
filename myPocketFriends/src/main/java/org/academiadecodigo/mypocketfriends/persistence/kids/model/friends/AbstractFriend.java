@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "account_type")
-public abstract class FriendAbs extends AbstractModel {
+public abstract class AbstractFriend extends AbstractModel {
 
     private String image;
 
