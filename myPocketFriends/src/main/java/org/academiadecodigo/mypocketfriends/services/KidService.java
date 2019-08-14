@@ -4,12 +4,13 @@ package org.academiadecodigo.mypocketfriends.services;
 import org.academiadecodigo.mypocketfriends.command.KidDto;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Message;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface KidService {
 
-    KidDto getKid(Integer id);
+    Kid getKid(Integer id);
 
     Kid save(Kid kid);
 

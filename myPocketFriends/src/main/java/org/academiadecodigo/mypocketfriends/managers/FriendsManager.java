@@ -1,6 +1,8 @@
 package org.academiadecodigo.mypocketfriends.managers;
 
-import org.academiadecodigo.mypocketfriends.model.Friend;
+
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.FriendType;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.Friend;
 
 public class FriendsManager {
 
@@ -11,6 +13,7 @@ public class FriendsManager {
     }
 
     public void addFriend() {
-        Friend friend = new Friend();
+        Friend friend = new Friend(FriendType.BUMBLEBEE);
     }
+
 }

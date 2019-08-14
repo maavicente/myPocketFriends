@@ -1,9 +1,10 @@
 package org.academiadecodigo.mypocketfriends.controller.web;
 
 
-import org.academiadecodigo.mypocketfriends.command.KidDto;
 import org.academiadecodigo.mypocketfriends.converters.KidToKidDto;
-import org.academiadecodigo.mypocketfriends.services.KidService;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
+
+import org.academiadecodigo.mypocketfriends.services.KidServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/kid")
 public class KidController {
 
-    private KidService kidService;
+    private KidServiceImpl kidService;
     private KidToKidDto kidToKidDto;
 
 
     @Autowired
-    public void setKidService(KidService kidService) {
+    public void setKidServiceImpl(KidServiceImpl kidService) {
         this.kidService = kidService;
     }
 
@@ -32,12 +33,12 @@ public class KidController {
 
 
     @RequestMapping(method = RequestMethod.GET, path = "/{cid}")
-    public String showKid(@PathVariable Integer cid, Model model) throws Exception {
+    public String showKid(@PathVariable Integer cid, Model model) {
 
-        KidDto kid = kidService.getKid(cid);
+        Kid kid = kidService.getKid(cid);
 
-        model.addAttribute("kid", kid);
-        model.addAttribute("friends", kid.getFriends());
+        model.addAttribute("kid", kidToKidDto.convert(kid));
+        model.addAttribute("friends", kid.getFriendAbs());
 
         return "kid/show";
     }

@@ -1,4 +1,4 @@
-package org.academiadecodigo.mypocketfriends;
+package org.academiadecodigo.mypocketfriends.persistence.kids.model.friends;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,5 +25,9 @@ public enum FriendType {
 
     public String getName() {
         return name;
+    }
+
+    public String getPath() {
+        return path;
     }
 }

@@ -1,7 +1,6 @@
 package org.academiadecodigo.mypocketfriends.persistence.kids.model.friends;
 
 
-import org.academiadecodigo.mypocketfriends.FriendType;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.AbstractModel;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 
@@ -17,6 +16,7 @@ public abstract class AbstractFriend extends AbstractModel {
     private String characteristics;
     private FriendType friendType;
     private String name;
+    private String path;
 
     @ManyToOne
     private Kid kid;
@@ -24,7 +24,9 @@ public abstract class AbstractFriend extends AbstractModel {
     public AbstractFriend(FriendType friendType) {
         this.friendType = friendType;
         this.name = friendType.getName();
+        this.path = friendType.getPath();
     }
+
 
     public String getImage() {
         return image;
@@ -60,5 +62,9 @@ public abstract class AbstractFriend extends AbstractModel {
 
     public String getName() {
         return name;
+    }
+
+    public String getPath() {
+        return path;
     }
 }

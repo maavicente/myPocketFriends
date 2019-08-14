@@ -2,6 +2,8 @@ package org.academiadecodigo.mypocketfriends.persistence.kids.dao.jpa;
 
 import org.academiadecodigo.mypocketfriends.persistence.kids.dao.Dao;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Model;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
@@ -18,6 +20,7 @@ public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
     public GenericJpaDao(Class<T> modelType) {
         this.modelType = modelType;
     }
+
 
     public void setEm(EntityManager em) {
         this.em = em;

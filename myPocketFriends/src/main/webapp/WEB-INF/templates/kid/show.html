@@ -35,7 +35,11 @@
     </div>
     <div class="col-sm-3">
         <tr th:each="friend : ${friends}">
-            <td th:text="${friend.name}"></td>
+            <td th:text="${friend.name}">
+
+                <img src="" height="100px" width="100px" >
+
+            </td>
         </tr>
         </table>
     </div>

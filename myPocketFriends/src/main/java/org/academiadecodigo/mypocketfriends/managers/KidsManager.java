@@ -1,6 +1,7 @@
 package org.academiadecodigo.mypocketfriends.managers;
 
-import org.academiadecodigo.mypocketfriends.model.Kid;
+
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 
 public class KidsManager {
 

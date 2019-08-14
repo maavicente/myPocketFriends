@@ -10,7 +10,6 @@ public class MessageServiceImpl implements MessageService {
 
     private MessageDao messageDao;
 
-    @Autowired
     public void setMessageDao(MessageDao messageDao) {
         this.messageDao = messageDao;
     }

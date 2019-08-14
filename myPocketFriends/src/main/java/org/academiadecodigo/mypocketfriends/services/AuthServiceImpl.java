@@ -1,6 +1,6 @@
 package org.academiadecodigo.mypocketfriends.services;
 
-import org.academiadecodigo.mypocketfriends.model.Kid;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 
 public class AuthServiceImpl implements AuthService {
 
@@ -13,7 +13,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public boolean authenticate(Integer id) {
-        accessingKid = kidService.get(id);
+        accessingKid = kidService.getKid(id);
         return accessingKid != null;
     }
 

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/friendddddddddd")
 public class FriendController {
 
     private KidService kidService;
@@ -24,12 +24,12 @@ public class FriendController {
     private KidToKidDto kidToKidDto;
 
     @Autowired
-    public void setCustomerService(KidService kidService) {
+    public void setKidService(KidService kidService) {
         this.kidService = kidService;
     }
 
     @Autowired
-    public void setFriendService(FriendServiceImpl friendService) {
+    public void setFriendServiceImpl(FriendServiceImpl friendService) {
         this.friendService = friendService;
     }
 

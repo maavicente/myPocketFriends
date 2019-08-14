@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
 
-    @RequestMapping("/")
+    @RequestMapping("/maiiiiiinnnnnnnn")
     public String home() {
         return "redirect:/kid/list";
     }

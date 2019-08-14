@@ -1,6 +1,7 @@
 package org.academiadecodigo.mypocketfriends.persistence.kids.model;
 
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.AbstractFriend;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.Friend;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,13 +21,14 @@ public class Kid extends AbstractModel {
     private String password;
     private String address;
 
+
     @OneToMany(
             cascade = {CascadeType.ALL},
             orphanRemoval = true,
             mappedBy = "kids",
             fetch = FetchType.EAGER
     )
-    private List<AbstractFriend> abstractFriendAbs = new ArrayList<>();
+    private List<Friend> abstractFriendAbs = new ArrayList<>();
 
     @OneToMany(
             cascade = {CascadeType.ALL},
@@ -61,6 +63,9 @@ public class Kid extends AbstractModel {
         this.email = email;
     }
 
+    public void setAbstractFriendAbs(List<Friend> abstractFriendAbs) {
+        this.abstractFriendAbs = abstractFriendAbs;
+    }
 
     public String getPhone() {
         return phone;
@@ -72,7 +77,7 @@ public class Kid extends AbstractModel {
     }
 
 
-    public List<AbstractFriend> getFriendAbs() {
+    public List getFriendAbs() {
         return abstractFriendAbs;
     }
 
@@ -82,7 +87,7 @@ public class Kid extends AbstractModel {
     }
 
 
-    public void addFriend(AbstractFriend abstractFriend) {
+    public void addFriend(Friend abstractFriend) {
         this.abstractFriendAbs.add(abstractFriend);
         abstractFriend.setKid(this);
     }

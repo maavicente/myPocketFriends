@@ -5,7 +5,7 @@ import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.Abstr
 import org.springframework.stereotype.Repository;
 
 
-@Repository
+
 public class JpaFriendDao extends GenericJpaDao<AbstractFriend> implements FriendDao {
 
     public JpaFriendDao() {
