@@ -42,14 +42,41 @@ html {
     </div>
 
     <div class="col-sm-8" style="    padding-bottom: 100px;">
-        <tr th:each="friend : ${friends}">
-            <td>
+        <table width="100%">
+        <td th:each="friend : ${friends}">
 
                 <a th:href="${kid.id +'/' + friend.name}"> <img th:src="${friend.path}" height="100px" width="110px" th:alt="${friend.name}" > </a>
 
-            </td>
-        </tr>
+
+        </td>
         </table>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-8">
+            <div th:if="${not #lists.isEmpty(message)}">
+                <h3>Messages sent:</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+    <table>
+        <tr th:each="message : ${message}">
+            <td><h5>Entry:</h5></td>
+                <td th:text="${message.message}">
+
+                <img src="" height="100px" width="100px" >
+        </td>
+
+        </tr>
+    </table>
+    <div>
+
+
+    </div>
+    <br>
+
+        </form>
     </div>
 </div>
 </div>

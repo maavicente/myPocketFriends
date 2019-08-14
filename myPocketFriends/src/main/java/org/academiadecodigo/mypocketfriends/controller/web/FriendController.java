@@ -1,7 +1,5 @@
 package org.academiadecodigo.mypocketfriends.controller.web;
 
-import org.academiadecodigo.mypocketfriends.command.MessageDto;
-import org.academiadecodigo.mypocketfriends.converters.KidToKidDto;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Message;
 import org.academiadecodigo.mypocketfriends.services.FriendServiceImpl;
 import org.academiadecodigo.mypocketfriends.services.KidService;
@@ -21,7 +19,7 @@ public class FriendController {
 
     private KidService kidService;
     private FriendServiceImpl friendService;
-    private KidToKidDto kidToKidDto;
+    //private KidToKidDto kidToKidDto;
 
     @Autowired
     public void setKidService(KidService kidService) {
@@ -34,10 +32,10 @@ public class FriendController {
     }
 
 
-    @Autowired
+/*    @Autowired
     public void setKidToKidDto(KidToKidDto kidToKidDto) {
         this.kidToKidDto = kidToKidDto;
-    }
+    }*/
 
     @RequestMapping(method = RequestMethod.POST, path = {"{cid}/friend/{fid}/message"})
     public String deposit(@PathVariable Integer cid, @PathVariable Integer fid, @Valid @ModelAttribute("message") Message message, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws Exception {
@@ -47,7 +45,7 @@ public class FriendController {
             return "redirect:/kid/" + cid;
         }
 
-        kidService.addMessage(message.getId(), message);
+        kidService.addMessage(message);
         redirectAttributes.addFlashAttribute("lastAction", "Message: " + message.getMessage() + " was sent!");
         return "redirect:/" + cid;
     }

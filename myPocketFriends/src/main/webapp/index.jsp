@@ -1,4 +1,8 @@
-<html style="background-image: url(hackathon.png); background-size: cover ">
+
+
+<html style="background-image: url(hackathon.png); background-size: cover " lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <thymeleaf th:replace="header :: header"/>
 <body>
 <style>
     .input{

@@ -18,6 +18,6 @@ public interface KidService {
 
     List<Message> listMessages(Integer id);
 
-    void addMessage(Integer id, Message message);
+    void addMessage(Message message);
 
 }
