@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <thymeleaf th:replace="header :: header" />
+    <thymeleaf th:replace="header :: header"/>
 </head>
 <body>
 <div class="container">
 
     <div th:replace="action :: action"></div>
 
-    <h2 th:text="${'Customer ' + customer.id}"></h2>
-
     <div class="row">
         <div class="col-sm-8">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Welcome:</label>
+                    <label class="col-sm-2 control-label">First Name:</label>
                     <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${kid.firstName}"></p>
+                        <p class="form-control-static" th:text="${kid.firstName}">First Name</p>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Last Name:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${kid.lastName}">Last Name</p>
+                    </div>
             </form>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-4">
             <div th:if="${not #lists.isEmpty(friend)}">
-                <h3>Accounts:</h3>
-                <table class="table table-striped">
-                    <tr>
-                       <th>#</th>
-                        <th>Balance</th>
-                    </tr>
-                    <tr th:each="account : ${friend}">
-                        <td th:text="${friend.id}"></td>
-                        <td th:text="${friend.name}"></td>
-                    </tr>
-                </table>
+                <h3>Friends:</h3>
             </div>
         </div>
     </div>
+    <div class="col-sm-3">
+        <tr th:each="friend : ${friend}">
+            <td th:text="${friend.id}"></td>
+            <td th:text="${friend.name}"></td>
+        </tr>
+        </table>
+    </div>
+</div>
+</div>
 </div>
 </body>
 </html>

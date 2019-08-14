@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<thymeleaf th:replace="header :: header" />
+</head>
+<body>
+<div class="container">
+
+    <div th:replace="action :: action"></div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div th:if="${not #lists.isEmpty(messages)}">
+                <h3>Messages:</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Message</th>
+                    </tr>
+                    <tr th:each="message : ${messages}">
+                        <td th:text="${message.message}"></td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <a class="btn btn-success" th:href="@{'/kid/' + ${customer.id} + '/friend/' + ${friend.id}}">New Message</a>
+        <a class="btn btn-primary" th:href="@{/kid/list}">Kid List</a>
+    </div>
+</div>
+</body>
+</html>
