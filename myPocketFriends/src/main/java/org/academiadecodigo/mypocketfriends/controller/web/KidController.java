@@ -1,10 +1,6 @@
 package org.academiadecodigo.mypocketfriends.controller.web;
 
 
-import org.academiadecodigo.mypocketfriends.command.FriendDto;
-import org.academiadecodigo.mypocketfriends.command.KidDto;
-import org.academiadecodigo.mypocketfriends.converters.FriendToFriendDto;
-import org.academiadecodigo.mypocketfriends.converters.KidDtoToKid;
 import org.academiadecodigo.mypocketfriends.converters.KidToKidDto;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 import org.academiadecodigo.mypocketfriends.services.KidService;
@@ -29,12 +25,10 @@ public class KidController {
     private KidDtoToKid kidDtoToKid;
     private FriendToFriendDto friendToFriendDto;
 
-
     @Autowired
     public void setKidService(KidService kidService) {
         this.kidService = kidService;
     }
-
 
     @Autowired
     public void setKidToKidDto(KidToKidDto kidToKidDto) {
@@ -56,19 +50,6 @@ public class KidController {
         model.addAttribute("customers", kidToKidDto.convert(kidService.list()));
         return "customer/list";
     }
-
-    @RequestMapping(method = RequestMethod.GET, path = "/add")
-    public String addCustomer(Model model) {
-        model.addAttribute("customer", new KidDto());
-        return "customer/add-update";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, path = "/{id}/edit")
-    public String editCustomer(@PathVariable Integer id, Model model) {
-        model.addAttribute("customer", kidToKidDto.convert(kidService.get(id)));
-        return "customer/add-update";
-    }
-
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public String showCustomer(@PathVariable Integer id, Model model) throws Exception {

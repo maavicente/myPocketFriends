@@ -1,10 +1,7 @@
 package org.academiadecodigo.mypocketfriends.controller.web;
 
 
-import org.academiadecodigo.mypocketfriends.converters.FriendToFriendDto;
 import org.academiadecodigo.mypocketfriends.converters.KidToKidDto;
-import org.academiadecodigo.mypocketfriends.converters.MessageDtoToMessage;
-import org.academiadecodigo.mypocketfriends.converters.MessageToMessageDto;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Message;
 import org.academiadecodigo.mypocketfriends.services.KidService;
@@ -30,7 +27,6 @@ public class MessageController {
     private MessageDtoToMessage messageDtoToMessage;
     private KidToKidDto kidToKidDto;
     private FriendToFriendDto friendToFriendDto;
-
 
     @Autowired
     public void setMessageService(MessageService messageService) {

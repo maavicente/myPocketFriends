@@ -1,13 +1,7 @@
 package org.academiadecodigo.mypocketfriends.controller.web;
 
-<<<<<<< HEAD
-import org.academiadecodigo.mypocketfriends.command.FriendDto;
-=======
 import org.academiadecodigo.mypocketfriends.command.MessageDto;
->>>>>>> 22d0d2ffab01c1d48a37670416c30181d3c8052b
-import org.academiadecodigo.mypocketfriends.converters.FriendDtoToFriend;
 import org.academiadecodigo.mypocketfriends.converters.KidToKidDto;
-import org.academiadecodigo.mypocketfriends.services.FriendService;
 import org.academiadecodigo.mypocketfriends.services.KidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
