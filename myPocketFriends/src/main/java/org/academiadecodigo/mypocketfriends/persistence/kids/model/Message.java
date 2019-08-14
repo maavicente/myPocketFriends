@@ -20,6 +20,10 @@ public class Message extends AbstractModel {
     private Kid kid;
 
 
+    public Message() {
+
+    }
+
     public Friend getFriend() {
         return friend;
     }

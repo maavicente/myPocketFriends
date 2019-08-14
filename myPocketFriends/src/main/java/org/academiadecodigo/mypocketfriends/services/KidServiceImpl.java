@@ -1,9 +1,6 @@
 package org.academiadecodigo.mypocketfriends.services;
 
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.FriendType;
-import org.academiadecodigo.mypocketfriends.persistence.kids.dao.FriendDao;
-import org.academiadecodigo.mypocketfriends.persistence.kids.dao.KidDao;
-import org.academiadecodigo.mypocketfriends.persistence.kids.dao.MessageDao;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Message;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.Friend;
@@ -15,20 +12,26 @@ import java.util.List;
 @Service
 public class KidServiceImpl implements KidService {
 
-   private KidDao kidDao;
-    private MessageDao messageDao;
+   //private KidDao kidDao;
+    //private MessageDao messageDao;
     private List<Kid> list;
-   private FriendDao friendDao;
+    ArrayList<Message> messages = new ArrayList<>();
+   //private FriendDao friendDao;
+
+    public ArrayList<Message> getMessages() {
+        return messages;
+    }
 
 
-    public void setKidDao(KidDao kidDao) {
+
+/*    public void setKidDao(KidDao kidDao) {
         this.kidDao = kidDao;
     }
 
 
     public void setMessageDao(MessageDao messageDao) {
         this.messageDao = messageDao;
-    }
+    }*/
 
     public KidServiceImpl(){
         init();
@@ -50,6 +53,8 @@ public class KidServiceImpl implements KidService {
         kid.setAbstractFriendAbs(listFriends);
 
         list.add(kid);
+
+
 
     }
 
@@ -95,19 +100,11 @@ public class KidServiceImpl implements KidService {
     }
 
     @Override
-    public void addMessage(Integer id, Message message) {
+    public void addMessage(Message message) {
     //    Kid kid = kidDao.findById(id);
 
-    //    if (kid == null) {
-    //        throw new IllegalArgumentException("Kid does not exist");
-    //    }
-
-    //    if (this.listMessages(id).contains(messageDao.findById(message.getId()))) {
-    //        throw new IllegalArgumentException("Invalid id number");
-    //    }
-
-     //   kid.addMessage(message);
-     //   kidDao.saveOrUpdate(kid);
+        messages.add(message);
     }
+
 }
 
