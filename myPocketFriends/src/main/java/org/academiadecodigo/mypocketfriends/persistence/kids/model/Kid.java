@@ -1,6 +1,7 @@
 package org.academiadecodigo.mypocketfriends.persistence.kids.model;
 
-import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.FriendAbs;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.AbstractFriend;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class Kid extends AbstractModel {
             mappedBy = "kids",
             fetch = FetchType.EAGER
     )
-    private List<FriendAbs> friendAbs = new ArrayList<>();
+    private List<AbstractFriend> abstractFriendAbs = new ArrayList<>();
 
     @OneToMany(
             cascade = {CascadeType.ALL},
@@ -71,8 +72,8 @@ public class Kid extends AbstractModel {
     }
 
 
-    public List<FriendAbs> getFriendAbs() {
-        return friendAbs;
+    public List<AbstractFriend> getFriendAbs() {
+        return abstractFriendAbs;
     }
 
 
@@ -81,15 +82,15 @@ public class Kid extends AbstractModel {
     }
 
 
-    public void addFriend(FriendAbs friendAbs) {
-        this.friendAbs.add(friendAbs);
-        friendAbs.setKid(this);
+    public void addFriend(AbstractFriend abstractFriend) {
+        this.abstractFriendAbs.add(abstractFriend);
+        abstractFriend.setKid(this);
     }
 
 
-    public void removeFriend(FriendAbs friendAbs) {
-        this.friendAbs.remove(friendAbs);
-        friendAbs.setKid(null);
+    public void removeFriend(AbstractFriend abstractFriend) {
+        this.abstractFriendAbs.remove(abstractFriend);
+        abstractFriend.setKid(null);
     }
 
 
@@ -154,7 +155,7 @@ public class Kid extends AbstractModel {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", friendAbs=" + friendAbs +
+                ", friendAbs=" + abstractFriendAbs +
                 "} " + super.toString();
     }
 }

@@ -1,5 +1,6 @@
 package org.academiadecodigo.mypocketfriends.services;
 
+import org.academiadecodigo.mypocketfriends.model.Friend;
 import org.academiadecodigo.mypocketfriends.persistence.kids.dao.FriendDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
