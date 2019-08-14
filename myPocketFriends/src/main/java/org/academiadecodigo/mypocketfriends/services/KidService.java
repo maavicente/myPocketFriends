@@ -10,7 +10,7 @@ public interface KidService {
 
     Kid getKid(Integer id);
 
-    Kid save(Kid kid);
+    void save(Kid kid);
 
     List<Kid> list();
 

@@ -42,7 +42,7 @@ public class KidServiceImpl implements KidService {
     @Transactional
     @Override
     public void save(Kid kid) {
-        return kidDao.saveOrUpdate(kid);
+         kidDao.saveOrUpdate(kid);
     }
 
     @Override

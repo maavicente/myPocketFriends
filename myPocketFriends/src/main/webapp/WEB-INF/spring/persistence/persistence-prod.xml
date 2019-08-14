@@ -29,6 +29,10 @@
 
     </bean>
 
+    <bean id="jpaFriendDao" class="org.academiadecodigo.mypocketfriends.persistence.kids.dao.jpa.JpaFriendDao" />
+    <bean id ="jpaKidDao" class="org.academiadecodigo.mypocketfriends.persistence.kids.dao.jpa.JpaKidDao"/>
+    <bean id ="jpaMessageDao" class="org.academiadecodigo.mypocketfriends.persistence.kids.dao.jpa.JpaMessageDao"/>
+
     <bean id="emFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 
         <property name="dataSource" ref="dataSource"/>
