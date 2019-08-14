@@ -1,6 +1,7 @@
 package org.academiadecodigo.mypocketfriends.services;
 
 
+import org.academiadecodigo.mypocketfriends.command.KidDto;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Kid;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.Message;
 
@@ -8,9 +9,9 @@ import java.util.List;
 
 public interface KidService {
 
-    Kid getKid(Integer id);
+    KidDto getKid(Integer id);
 
-    void save(Kid kid);
+    Kid save(Kid kid);
 
     List<Kid> list();
 

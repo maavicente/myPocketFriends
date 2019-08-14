@@ -1,5 +1,7 @@
 package org.academiadecodigo.mypocketfriends.services;
 
+import org.academiadecodigo.mypocketfriends.command.KidDto;
+import org.academiadecodigo.mypocketfriends.converters.KidToKidDto;
 import org.academiadecodigo.mypocketfriends.persistence.kids.dao.FriendDao;
 import org.academiadecodigo.mypocketfriends.persistence.kids.dao.KidDao;
 import org.academiadecodigo.mypocketfriends.persistence.kids.dao.MessageDao;
@@ -35,14 +37,16 @@ public class KidServiceImpl implements KidService {
     }
 
     @Override
-    public Kid getKid(Integer id) {
-        return kidDao.findById(id);
+    public KidDto getKid(Integer id) {
+        KidToKidDto converter = new KidToKidDto();
+        return converter.convert(kidDao.findById(id));
     }
 
     @Transactional
     @Override
-    public void save(Kid kid) {
-         kidDao.saveOrUpdate(kid);
+    public Kid save(Kid kid) {
+        return kidDao.saveOrUpdate(kid);
+
     }
 
     @Override
@@ -71,8 +75,7 @@ public class KidServiceImpl implements KidService {
             throw new IllegalArgumentException("Kid does not exist");
         }
 
-        if (friendDao.findById(message.getId()) == null ||
-                getMessageIds(kid).contains(message.getAccountNumber())) {
+        if (this.listMessages(id).contains(messageDao.findById(message.getId()))) {
             throw new IllegalArgumentException("Invalid id number");
         }
 

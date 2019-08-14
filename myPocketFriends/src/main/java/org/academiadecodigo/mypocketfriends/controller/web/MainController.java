@@ -10,6 +10,6 @@ public class MainController {
 
     @RequestMapping("/")
     public String home() {
-        return "redirect:/customer/list";
+        return "redirect:/kid/list";
     }
 }

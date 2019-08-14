@@ -3,32 +3,24 @@ package org.academiadecodigo.mypocketfriends.services;
 import org.academiadecodigo.mypocketfriends.persistence.kids.dao.FriendDao;
 import org.academiadecodigo.mypocketfriends.persistence.kids.dao.KidDao;
 import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.Friend;
+import org.academiadecodigo.mypocketfriends.persistence.kids.model.friends.FriendAbs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class FriendServiceImpl implements FriendService {
+public class FriendServiceImpl {
 
     private FriendDao friendDao;
-    private KidDao kidDao;
 
     @Autowired
     public void setFriendDao(FriendDao friendDao) {
         this.friendDao = friendDao;
     }
 
-    @Override
-    public Friend get(Integer id) {
+
+    public FriendAbs get(Integer id) {
         return friendDao.findById(id);
-    }
-
-
-
-    @Transactional
-    @Override
-    public void saveMessage() {
-        Friend friend =  friendDao.findById();
     }
 
 }
