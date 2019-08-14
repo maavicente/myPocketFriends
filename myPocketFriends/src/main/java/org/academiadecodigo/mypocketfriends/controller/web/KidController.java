@@ -43,6 +43,12 @@ public class KidController {
         return "kid/show";
     }
 
+    @RequestMapping(method = RequestMethod.POST, path = "/{cid}")
+    public String login(@PathVariable Integer cid, Model model) {
+
+        return "redirect:0";
+    }
+
 
    /* @RequestMapping(method = RequestMethod.POST, path = {"/", ""}, params = "action=save")
     public String saveCustomer(@Valid @ModelAttribute("customer") CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {

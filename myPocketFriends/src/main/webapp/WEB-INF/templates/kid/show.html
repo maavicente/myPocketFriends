@@ -2,6 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <thymeleaf th:replace="header :: header"/>
+    <style>
+html {
+    background-image: url("https://www.pngkit.com/png/detail/0-1464_cartoon-children-book-pencil-decoration-background-children-background.png");
+    background-size: cover;
+}
+        body {
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color:  hsla(0, 0%, 100%, 0.7);
+        }
+
+    </style>
 </head>
 <body>
 <div class="container">
@@ -12,32 +25,27 @@
         <div class="col-sm-8">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">First Name:</label>
+                    <h1 style='margin-left: 100px'>Welcome back </h1>
                     <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${kid.firstName}">First Name</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Last Name:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${kid.lastName}">Last Name</p>
+                        <h2 style="margin-left: 100px" th:text="${kid.firstName}">First Name</h2>
                     </div>
                 </div>
             </form>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div th:if="${not #lists.isEmpty(friends)}">
-                <h3>Friends:</h3>
+                Choose your new friend to talk to
             </div>
         </div>
     </div>
-    <div class="col-sm-3">
-        <tr th:each="friend : ${friends}">
-            <td th:text="${friend.name}">
 
-                <img src="" height="100px" width="100px" >
+    <div class="col-sm-8" style="    padding-bottom: 100px;">
+        <tr th:each="friend : ${friends}">
+            <td>
+
+                <a th:href="${kid.id +'/' + friend.name}"> <img th:src="${friend.path}" height="100px" width="110px" th:alt="${friend.name}" > </a>
 
             </td>
         </tr>

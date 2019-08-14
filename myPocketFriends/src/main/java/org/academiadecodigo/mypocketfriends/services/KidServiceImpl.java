@@ -46,6 +46,9 @@ public class KidServiceImpl implements KidService {
 
         listFriends.add(new Friend(FriendType.BUMBLEBEE));
         listFriends.add(new Friend(FriendType.CATARINA_PERES));
+        listFriends.add(new Friend(FriendType.DOLPHIN));
+        listFriends.add(new Friend(FriendType.TMNT_RAPHAEL));
+        listFriends.add(new Friend(FriendType.CRISTIANO_RONALDO));
 
         kid.setAbstractFriendAbs(listFriends);
 
